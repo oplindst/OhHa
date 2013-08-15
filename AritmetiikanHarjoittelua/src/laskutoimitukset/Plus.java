@@ -4,7 +4,6 @@
  */
 package laskutoimitukset;
 
-import laskutoimitukset.Laskutoimitus;
 import sovelluslogiikka.Luku;
 
 /**

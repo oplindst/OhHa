@@ -33,7 +33,7 @@ public class HallintaTest {
     
     @Before
     public void setUp() {
-        hallinta = new Hallinta(100, true, true, true);
+        hallinta = new Hallinta(100, true, true, true, "+-*/");
     }
     
     @After

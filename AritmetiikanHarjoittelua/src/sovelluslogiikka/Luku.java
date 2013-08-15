@@ -27,9 +27,19 @@ public class Luku {
             return "0";
         }
         if (osoittaja%nimittaja==0) {
+            if (negatiivinen()) {
+                return "(" + osoittaja/nimittaja + ")";
+            }
             return "" + osoittaja/nimittaja;
         }
-        return osoittaja + "/" + nimittaja;
+        return "("+osoittaja + "/" + nimittaja+")";
+    }
+    
+    public boolean negatiivinen() {
+        if (osoittaja*nimittaja < 0) {
+            return true;
+        }
+        return false;
     }
     
     public int getOsoittaja() {

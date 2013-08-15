@@ -33,6 +33,7 @@ public class JakoTest {
     
     @Before
     public void setUp() {
+        jako = new Jako();
     }
     
     @After
@@ -43,7 +44,7 @@ public class JakoTest {
     public void nayttaaKokonaisluvunOikein() {
         Luku eka = new Luku(6,1);
         Luku toka = new Luku(2,1);
-        Luku tulos = jako.laske(eka, toka);
+        String tulos = jako.laske(eka, toka).toString();
         assertEquals("3", tulos);
     }
 }

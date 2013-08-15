@@ -33,6 +33,7 @@ public class KertoTest {
     
     @Before
     public void setUp() {
+        kerto = new Kerto();
     }
     
     @After
@@ -43,8 +44,7 @@ public class KertoTest {
     public void nollallaKertominen() {
         Luku eka = new Luku(4,1);
         Luku toka = new Luku(0,1);
-        Luku tulos = kerto.laske(eka, toka);
-        assertEquals("0", tulos.toString());
+        assertEquals("0", kerto.laske(eka, toka).toString());
     }
     
 }

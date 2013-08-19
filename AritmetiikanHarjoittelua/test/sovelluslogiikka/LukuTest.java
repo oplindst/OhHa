@@ -51,15 +51,41 @@ public class LukuTest {
     }
     
     @Test
-    public void nollallaNimittajassa() {
+    public void nolla() {
+        Luku luku = new Luku(0, 42);
+        assertEquals("0", luku.toString());
+    }
+    
+    @Test
+    public void nollaNimittajassa() {
         Luku luku = new Luku(5,0);
         assertEquals("ei määritelty", luku.toString());
     }
     
     @Test
-    public void vertailuOikein() {
+    public void vertaileeKokonaislukujaOikein() {
         Luku eka = new Luku(14,7);
         Luku toka = new Luku(6,3);
         assertEquals(true, eka.equals(toka));
     }
+    
+    public void vertaileeMurtolukujaOikein() {
+        Luku eka = new Luku(146, -4);
+        Luku toka = new Luku(-584, 16);
+        assertEquals(eka, toka);
+    }
+    
+    public void sieventaaKokonaisluvun() {
+        Luku luku = new Luku(1456, 728);
+        luku.sievenna();
+        assertEquals("2", luku);
+    }
+    
+    public void sieventaaMurtoluvun() {
+        Luku luku = new Luku(1280, 150);
+        luku.sievenna();
+        assertEquals("128/15", luku);
+    }
+    
+    
 }

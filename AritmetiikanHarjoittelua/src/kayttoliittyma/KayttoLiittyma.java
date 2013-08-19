@@ -4,7 +4,7 @@
  */
 package kayttoliittyma;
 
-import sovelluslogiikka.*;
+import sovelluslogiikka.Hallinta;
 import java.util.Scanner;
 
 /**
@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author O-P
  */
 public class KayttoLiittyma {
-    
+
     private Hallinta hallinta;
     private Scanner lukija;
 
@@ -21,80 +21,131 @@ public class KayttoLiittyma {
     }
 
     public void suorita() {
-        
-        hallinta = teeUusiHallinta();
-        System.out.println("Kuinka monta kysymystä?");
-        int maara = lukija.nextInt();
-
-        for (int i = 1; i <= maara; i++) {
-            kysy();
+        while (true) {
+            hallinta = teeUusiHallinta();
+            System.out.println("Kuinka monta kysymystä?");
+            int maara = syotaLuku();
+            for (int i = 1; i <= maara; i++) {
+                kysy();
+            }
+            tilastot();
+            String uudestaan = lukija.nextLine();
+            if (!uudestaan.equals("joo")) {
+                break;
+            }
         }
-        tilastot();
+        System.out.println("Kiitos!");
+    }
+
+    private int syotaLuku() {
+        while (true) {
+            try {
+                while (true) {
+                    int luku = Integer.parseInt(lukija.nextLine());
+                    if (luku < 1) {
+                        System.out.println("Syötä positiivinen luku");
+                    } else {
+                        return luku;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Syötä kokonaisluku");
+            }
+        }
     }
     
-    public Hallinta teeUusiHallinta() {
+    private String syotaMerkkijono() {
+        while (true) {
+            try {
+                String mjono = lukija.nextLine();
+                return mjono;
+            }
+            catch(Exception e) {
+                System.out.println("Syötä merkkijono");
+            }
+        }
+    }
+
+    private Hallinta teeUusiHallinta() {
         boolean n;
         boolean q;
         boolean nega;
+        boolean rati;
         System.out.println("Mitkä laskutoimitukset mukana?");
-        String laskutoimitukset = lukija.nextLine();
-        
-        System.out.println("Kuinka suurilla luvuilla lasketaan?");
-        int koko = lukija.nextInt();
-        
+        String laskutoimitukset = syotaMerkkijono();
+
+        System.out.println("Yläraja lukujen koolle?");
+        int koko = syotaLuku();
+
         System.out.println("Lasketaanko negatiivisilla luvuilla? (1=kyllä/2=ei)");
-        int eka = lukija.nextInt();
-        
+        int eka = syotaLuku();
+
         System.out.println("Lasketaanko murtoluvuilla? (1=kyllä/2=ei)");
-        int toka = lukija.nextInt();
-        
+        int toka = syotaLuku();
+
         System.out.println("Saavatko ratkaisut olla negatiivisia? (1=kyllä/2=ei)");
-        int kolmas = lukija.nextInt();
-        
+        int kolmas = syotaLuku();
+
+        System.out.println("Saavatko ratkaisut olla murtolukuja? (1=kyllä/2=ei)");
+        int neljas = syotaLuku();
+
+
+
         if (tarkistaVastaus(eka)) {
             n = true;
-        }
-        else {
+        } else {
             n = false;
         }
-        
+
         if (tarkistaVastaus(toka)) {
             q = true;
-        }
-        else {
+        } else {
             q = false;
         }
-        
+
         if (tarkistaVastaus(kolmas)) {
             nega = true;
-        }
-        else {
+        } else {
             nega = false;
         }
-        
-        return new Hallinta(koko, q, n, nega, laskutoimitukset);
+
+        if (tarkistaVastaus(neljas)) {
+            rati = true;
+        } else {
+            rati = false;
+        }
+
+        return new Hallinta(koko, 2 * koko, q, n, nega, rati, laskutoimitukset);
     }
-    
-    public boolean tarkistaVastaus(int vastaus) {
-        if (vastaus==1) {
+
+    private boolean tarkistaVastaus(int vastaus) {
+        if (vastaus == 1) {
             return true;
         }
         return false;
     }
-    
-    public void kysy() {
+
+    private void kysy() {
         String kysymys = hallinta.kysy();
         System.out.print(kysymys);
-        int vastaus = lukija.nextInt();
-        if (hallinta.tarkista(vastaus)) {
-            System.out.println("Oikein!");
+        int osoittaja = 1;
+        int nimittaja = 1;
+        if (!hallinta.ratkaisutMurtolukuja()) {
+            osoittaja = syotaLuku();
+
+        } else {
+            osoittaja = syotaLuku();
+            System.out.print("/");
+            nimittaja = syotaLuku();
         }
-        else {
+        if (hallinta.tarkista(osoittaja, nimittaja)) {
+            System.out.println("Oikein!");
+        } else {
             System.out.println("Väärin! \n" + kysymys + hallinta.getTulos());
         }
     }
-    
-    public void tilastot() {
+
+    private void tilastot() {
         System.out.println(hallinta.tilastot());
     }
 }

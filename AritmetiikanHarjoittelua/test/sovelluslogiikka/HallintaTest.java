@@ -33,7 +33,7 @@ public class HallintaTest {
     
     @Before
     public void setUp() {
-        hallinta = new Hallinta(100, true, true, true, "+-*/");
+        
     }
     
     @After
@@ -42,6 +42,7 @@ public class HallintaTest {
     
     @Test
     public void tilastotPitavatKirjaaOikein() {
+        hallinta = new Hallinta(100, 200, true, true, true, true, "+-*/");
         hallinta.oikein();
         hallinta.vaarin();
         assertEquals("1 oikein, 1 väärin", hallinta.tilastot());

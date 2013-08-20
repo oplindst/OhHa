@@ -65,7 +65,7 @@ public class Hallinta {
         Luku toka = new Luku(1,1);
         Laskutoimitus laskutoimitus = arvoLaskutoimitus();
         tulos = new Luku(1,0);
-        while (tulos.getOsoittaja()>ratkaisujenKoko || (!ratkaisutNegatiivisia && tulos.negatiivinen()) || (!ratkaisutRationaalisia && tulos.murtoluku()) || !tulos.maaritelty()) {
+        while (-tulos.getOsoittaja()>ratkaisujenKoko || tulos.getOsoittaja()>ratkaisujenKoko || (!ratkaisutNegatiivisia && tulos.negatiivinen()) || (!ratkaisutRationaalisia && tulos.murtoluku()) || !tulos.maaritelty()) {
             eka = arvoLuku();
             toka = arvoLuku();
             tulos = laskutoimitus.laske(eka, toka);
@@ -78,7 +78,7 @@ public class Hallinta {
         return "" + eka + " " + laskutoimitus + " " + toka + " = ";
     }
 
-    public boolean tarkista(int osoittaja, int nimittaja) {
+    public boolean tarkista(int osoittaja, int nimittaja, Luku tulos) {
         tulos.sievenna();
         Luku luku = new Luku(osoittaja, nimittaja);
         luku.sievenna();

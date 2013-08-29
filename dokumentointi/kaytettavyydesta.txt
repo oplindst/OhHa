@@ -1,0 +1,6 @@
+      Käytettävyydestä
+
+- pienimmillä lukujen ja ratkaisujen kokojen arvoilla ja varsinkin ilman lisäasetuksia tai yhdellä laskutoimituksella
+kysymysten laatiminen SAATTAA epäonnistua (näköjään pelkästään + valittuna, 20 kysymystä, lukujen koko 5 ja ratkaisujen
+koko 10 ei onnistu ollenkaan). Toisin sanoen samoilla asetuksilla kysymysten laatiminen onnistuu ja välillä ei, mikä 
+hämmensi huomattavasti. Murtolukujen mukanaolo helpottaa toimimista ilmeisesti, mutta ei korjaa ongelmaa.

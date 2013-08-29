@@ -1,0 +1,6 @@
+        Luokkarakennekuvaus
+
+   Käyttöliittymässä luodaan ja käytetään Hallinta-olioita. Hallinta-oliot käyttävät Arpoja-luokkaa
+lukujen arpomiseen ja jokaisella oliolla on yksi Tilastot-olio päivitettävänään. Tilastot-oliot päivittävät
+Kokonaistilastot-luokkaa. Laskutoimitus-oliot käyttävät Luku-olioita laskemisessa ja eri laskutoimitukset periytyvät 
+Laskutoimitus-luokasta.

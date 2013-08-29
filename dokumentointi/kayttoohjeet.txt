@@ -1,0 +1,18 @@
+Aritmetiikan harjoittelua -ohje
+
+1. P‰‰valikko
+
+- P‰‰valikossa on kolme nappia: Nopea aloitus, Tarkenna asetuksia ja Kokonaistilastot.
+- Nopea aloitus laatii kysymyksi‰ ennalta m‰‰r‰tyill‰ asetuksilla.
+- Tarkenna asetuksia siirt‰‰ k‰ytt‰j‰n asetusvalikkoon, jossa voi vaikuttaa esitett‰viin kysymyksiin.
+- Kokonaistilastot n‰ytt‰‰ tilastoja koko ohjelman suorituksen aikana vastatuista kysymyksist‰
+
+2. Kysymysvalikko
+
+- Tarkista-napit tarkastavat, onko vasemmalla puolella olevassa kent‰ss‰ oikea luku.
+- Takaisin-nappi vie takaisin p‰‰valikkoon
+- Tilastot-nappi n‰ytt‰‰ tilastoja juuri esill‰ olevista kysymyksist‰
+- Uudestaan-nappi arpoo uudet kysymykset samoilla asetuksilla.
+- Jatka-nappi antaa uudet kysymykset, mutta toimii vasta kun kaikkiin kysymyksiin on vastattu: jos joissain laskutoimituksessa oli vaikeuksia,
+seuraavat kysymykset k‰sittelev‰t ainoastaan niit‰. Jos kaikki meni hyvin, seuraavien kysymysten luvut kasvavat.
+

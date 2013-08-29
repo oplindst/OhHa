@@ -73,16 +73,19 @@ public class LukuTest {
         Luku eka = new Luku(146, -4);
         Luku toka = new Luku(-584, 16);
         assertEquals(eka, toka);
+        eka = new Luku(-4, 45);
+        toka = new Luku(4, -45);
+        assertEquals(eka, toka);
     }
     
-    public void sieventaaKokonaisluvun() {
+    public void sieventaaKokonaisluvunOikein() {
         Luku luku = new Luku(1456, 728);
         luku.sievenna();
         assertEquals("2", luku);
     }
     
-    public void sieventaaMurtoluvun() {
-        Luku luku = new Luku(1280, 150);
+    public void sieventaaMurtoluvunOikein() {
+        Luku luku = new Luku(2560, 300);
         luku.sievenna();
         assertEquals("128/15", luku);
     }

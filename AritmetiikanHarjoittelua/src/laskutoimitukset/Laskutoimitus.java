@@ -10,5 +10,13 @@ import sovelluslogiikka.Luku;
  */
 public abstract class Laskutoimitus {
     
+    /**
+ * Metodi antaa syotelukujen tuloksen laskutoimituksesta riippuen
+ *
+ * @param   eka   Ensimmäinen luku
+ * @param   toka  Toinen luku
+ * 
+ * @return lukujen ja laskutoimituken antama tulos
+ */
     public abstract Luku laske(Luku eka, Luku toka);
 }

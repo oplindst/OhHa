@@ -29,7 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-package kayttoliittyma;
+package kayttoliittyma.tyokalut;
 
 import javax.swing.*;
 import javax.swing.SpringLayout;
@@ -221,5 +221,14 @@ public class SpringUtilities {
         SpringLayout.Constraints pCons = layout.getConstraints(parent);
         pCons.setConstraint(SpringLayout.SOUTH, y);
         pCons.setConstraint(SpringLayout.EAST, x);
+    }
+    
+    public static void asetaKomponentti(Container container, SpringLayout layout, JComponent component, int west, int north) {
+        layout.putConstraint(SpringLayout.WEST, component,
+                west,
+                SpringLayout.WEST, container);
+        layout.putConstraint(SpringLayout.NORTH, component,
+                north,
+                SpringLayout.NORTH, container);
     }
 }

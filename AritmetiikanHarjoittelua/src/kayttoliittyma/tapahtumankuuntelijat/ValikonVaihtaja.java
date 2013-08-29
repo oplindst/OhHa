@@ -34,12 +34,13 @@ public class ValikonVaihtaja implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         frame.setVisible(false);
+        ViestinNayttaja virhe = null;
         if (tyyppi == ValikkoTyyppi.AUTOMAATTIKYSYMYS) {
             try {
                 Hallinta uusiHallinta = new Hallinta(10, 100, 200, false, true, true, false, "+-*/", false);
                 KayttoLiittyma.teeKysymysvalikko(uusiHallinta, tyyppi, komponentit[0]);
             } catch (Exception ex) {
-                System.out.println("tarkista syötteesi");
+                virhe = new ViestinNayttaja("Tarkista syötteesi");
             }
         } else if (tyyppi == ValikkoTyyppi.KYSYMYS) {
             try {
@@ -71,7 +72,7 @@ public class ValikonVaihtaja implements ActionListener {
                 Hallinta uusiHallinta = new Hallinta(eka, toka, kolmas, neljas, viides, kuudes, ykstoista, laskutoim, kakstoista);
                 KayttoLiittyma.teeKysymysvalikko(uusiHallinta, tyyppi, komponentit);
             } catch (Exception ex) {
-                System.out.println("tarkista syötteesi");
+                virhe = new ViestinNayttaja("Tarkista syötteesi");
                 frame.setVisible(true);
             }
         } else if (tyyppi == ValikkoTyyppi.PAAVALIKKO) {
@@ -93,26 +94,28 @@ public class ValikonVaihtaja implements ActionListener {
                         lukukoko *= 2;
                         ratkkoko *= 2;
                         laskutoimitukset = "+-*/";
-                    }
-                    else {
+                    } else {
                         if (!hallinta.plusSujuu()) {
-                            laskutoimitukset= laskutoimitukset + "+";
+                            laskutoimitukset = laskutoimitukset + "+";
                         }
                         if (!hallinta.miinusSujuu()) {
-                            laskutoimitukset= laskutoimitukset + "-";
+                            laskutoimitukset = laskutoimitukset + "-";
                         }
                         if (!hallinta.kertoSujuu()) {
-                            laskutoimitukset= laskutoimitukset + "*";
+                            laskutoimitukset = laskutoimitukset + "*";
                         }
                         if (!hallinta.jakoSujuu()) {
-                            laskutoimitukset= laskutoimitukset + "/";
+                            laskutoimitukset = laskutoimitukset + "/";
                         }
+                        lukukoko = 2 * lukukoko / 3 + 1;
+                        ratkkoko = 2 * ratkkoko / 3 + 1;
                     }
 
                     Hallinta uusiHallinta = new Hallinta(maara, lukukoko, ratkkoko, murto, nega, negaratk, murtoratk, laskutoimitukset, kolme);
                     KayttoLiittyma.teeKysymysvalikko(uusiHallinta, tyyppi, komponentit);
                 } catch (Exception ex) {
-                    System.out.println("tarkista syötteesi");
+                    virhe = new ViestinNayttaja("Tarkista syötteesi");
+                    virhe.getFrame().setVisible(true);
                 }
             } else {
                 frame.setVisible(true);
@@ -120,6 +123,9 @@ public class ValikonVaihtaja implements ActionListener {
         } else {
 
             KayttoLiittyma.teeAsetusvalikko();
+        }
+        if (virhe != null) {
+            virhe.getFrame().setVisible(true);
         }
     }
 

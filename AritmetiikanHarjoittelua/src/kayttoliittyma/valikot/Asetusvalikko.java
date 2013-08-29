@@ -41,9 +41,9 @@ public class Asetusvalikko extends Valikko{
         container.setLayout(layout);
         JLabel ekaTeksti = new JLabel("Montako kysymystä? (1-20)");
         JTextField kysymystenMaara = new JTextField("");
-        JLabel tokaTeksti = new JLabel("Anna yläraja laskettavien lukujen suuruuksille (positiivinen)");
+        JLabel tokaTeksti = new JLabel("Anna yläraja laskettavien lukujen suuruuksille (5-1000)");
         JTextField lukujenSuuruus = new JTextField("");
-        JLabel kolmasTeksti = new JLabel("Anna yläraja ratkaisujen suuruuksille (positiivinen)");
+        JLabel kolmasTeksti = new JLabel("Anna yläraja ratkaisujen suuruuksille (10-2000)");
         JTextField vastaustenSuuruus = new JTextField("");
         JCheckBox negatiivisia = new JCheckBox("Lasketaan negatiivisilla luvuilla");
         JCheckBox murtolukuja = new JCheckBox("Lasketaan murtoluvuilla");

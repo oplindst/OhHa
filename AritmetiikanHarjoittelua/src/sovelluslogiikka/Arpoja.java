@@ -112,7 +112,7 @@ public class Arpoja {
      *
      */
     public int arvoLuonnollinenInt(int koko) {
-        return arpoja.nextInt(koko + 1);
+        return arpoja.nextInt(koko)+1;
     }
     
     /**
@@ -125,7 +125,7 @@ public class Arpoja {
      */
 
     public int arvoKokonaisInt(int koko) {
-        return arpoja.nextInt(koko * 2 + 1) - koko;
+        return arpoja.nextInt(koko * 2) + 1 - koko;
     }
     
      /**

@@ -8,8 +8,8 @@ import java.util.HashMap;
 import laskutoimitukset.*;
 
 /**
- *
- * @author O-P
+ * Hallinta laatii kysymyksiä ja tarkistaa käyttäjän antamien vastauksien oikeellisuuden
+ * 
  */
 public class Hallinta {
 
@@ -21,10 +21,21 @@ public class Hallinta {
     private boolean ratkaisutRationaalisia;
     private Arpoja arpoja;
     private Tilastot tilastot;
+       /**
+ * Kysymyksissä esiintyy vain laskutoimituksia, jotka tämä merkkijono sisältää. Ainakin yhden seuraavista
+ * on löydyttävä merkkijonosta: +, -, *, /
+ */
     private String laskutoimitukset;
     private int kysymystenMaara;
+       /**
+ * Kertoo, onko kysymyksissä kolme lukua vai kaksi
+ */
     private boolean kolmeLukua;
-
+    
+   /**
+ * Konstruktori heittää virheen käyttöliittymälle, jos parametrit ovat virheellisiä
+ */
+    
     public Hallinta(int maara, int lukukoko, int ratkkoko, boolean q, boolean z, boolean negaratk, boolean ratiratk, String laskutoimitukset, boolean kolme) throws Exception {
 
         kysymystenMaara = maara;
@@ -37,7 +48,7 @@ public class Hallinta {
         ratkaisutRationaalisia = ratiratk;
         this.laskutoimitukset = laskutoimitukset;
         kolmeLukua = kolme;
-        if (laskutoimitukset.equals("") || kysymystenMaara < 1 || kysymystenMaara > 20 || lukujenKoko <= 0 || ratkaisujenKoko < 0) {
+        if (laskutoimitukset.equals("") || kysymystenMaara < 1 || kysymystenMaara > 20 || lukujenKoko <= 4 || ratkaisujenKoko <= 9 || lukujenKoko > 1000 || ratkaisujenKoko > 2000) {
             throw new IllegalArgumentException("tarkista syötteesi");
         }
         tilastot = new Tilastot();
@@ -107,6 +118,12 @@ public class Hallinta {
     public boolean kolmeLukua() {
         return kolmeLukua;
     }
+    
+       /**
+ * Laatii kysymyksiä ja niiden vastauksia konstruktorille annetun arvon verran. 
+ * 
+ * @return hajautustaulu, jossa avaimina kysymyksiä ja arvoina kunkin vastaukset
+ */
 
     public HashMap<String, Luku> kysy() {
         HashMap<String, Luku> kysymykset = new HashMap<>();
@@ -117,14 +134,25 @@ public class Hallinta {
             Laskutoimitus laskutoimitus = arvoLaskutoimitus();
             Laskutoimitus tokaLaskutoimitus = arvoLaskutoimitus();
             Luku tulos = new Luku(1, 0);
-            while (-tulos.getOsoittaja() > ratkaisujenKoko || tulos.getOsoittaja() > ratkaisujenKoko || (!ratkaisutNegatiivisia && tulos.negatiivinen()) || (!ratkaisutRationaalisia && tulos.murtoluku()) || !tulos.maaritelty() || !eka.maaritelty() || !toka.maaritelty() || !kolmas.maaritelty() || eka.nolla() || toka.nolla() || kolmas.nolla()) {
-                eka = arvoLuku();
-                toka = arvoLuku();
-                kolmas = arvoLuku();
-                if (kolmeLukua) {
-                    tulos = laskutoimitus.laske(eka, tokaLaskutoimitus.laske(toka, kolmas));
+            while (-tulos.getOsoittaja() > ratkaisujenKoko || tulos.getOsoittaja() > ratkaisujenKoko || !tulos.maaritelty() || !eka.maaritelty() || !toka.maaritelty() || !kolmas.maaritelty()) {
+                if (ratkaisutRationaalisia) {
+                    eka = arvoLuku();
+                    toka = arvoLuku();
+                    kolmas = arvoLuku();
+                }
+                else if (!ratkaisutNegatiivisia && ratkaisutNegatiivisia) {
+                    eka = arvoKokonaisluku();
+                    toka = arvoKokonaisluku();
+                    kolmas = arvoKokonaisluku();
                 }
                 else {
+                    eka = arvoLuonnollinenLuku();
+                    toka = arvoLuonnollinenLuku();
+                    kolmas = arvoLuonnollinenLuku();
+                }
+                if (kolmeLukua) {
+                    tulos = laskutoimitus.laske(eka, tokaLaskutoimitus.laske(toka, kolmas));
+                } else {
                     tulos = laskutoimitus.laske(eka, toka);
                 }
             }
@@ -212,6 +240,14 @@ public class Hallinta {
      */
     public Luku arvoLuku() {
         return arpoja.arvoLuku(negatiivisiaLukuja, rationaalilukuja, lukujenKoko);
+    }
+
+    public Luku arvoKokonaisluku() {
+        return arpoja.arvoKokonaisluku(lukujenKoko);
+    }
+    
+    public Luku arvoLuonnollinenLuku() {
+        return arpoja.arvoLuonnollinenLuku(lukujenKoko);
     }
 
     /**

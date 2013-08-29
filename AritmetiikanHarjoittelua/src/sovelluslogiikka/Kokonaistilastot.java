@@ -5,8 +5,8 @@
 package sovelluslogiikka;
 
 /**
- *
- * @author O-P
+ * Kokonaistilastot pitävät kirjaa koko ohjelman suorituksen aikana saaduista oikeista ja vääristä vastauksista
+ * 
  */
 public class Kokonaistilastot {
     

@@ -5,8 +5,8 @@
 package sovelluslogiikka;
 
 /**
- *
- * @author O-P
+ * Tilastot pitää kirjaa oikeista ja vääristä vastauksista kunkin laskutoimituksen kohdalla ja
+ * samalla päivittää kokonaistilastoja.
  */
 public class Tilastot {
 
@@ -111,18 +111,48 @@ public class Tilastot {
         Kokonaistilastot.jakoOikein();
     }
     
+    /**
+ * Laskutoimitus sujuu hyvin, jos suurin osa kysymyksistä on mennyt oikein
+ * 
+ * @return true, jos sujuu, muuten false
+ */
+    
     public boolean plusSujuu() {
         return (plusOikeita >= 4*plusVaaria);
     }
+    
+       /**
+ * Laskutoimitus sujuu hyvin, jos suurin osa kysymyksistä on mennyt oikein
+ * 
+ * @return true, jos sujuu, muuten false
+ */
     public boolean miinusSujuu() {
         return (miinusOikeita >= 4*miinusVaaria);
     }
+    
+       /**
+ * Laskutoimitus sujuu hyvin, jos suurin osa kysymyksistä on mennyt oikein
+ * 
+ * @return true, jos sujuu, muuten false
+ */
     public boolean kertoSujuu() {
         return (kertoOikeita >= 4*kertoVaaria);
     }
+    
+       /**
+ * Laskutoimitus sujuu hyvin, jos suurin osa kysymyksistä on mennyt oikein
+ * 
+ * @return true, jos sujuu, muuten false
+ */
     public boolean jakoSujuu() {
         return (jakoOikeita >= 4*jakoVaaria);
     }
+    
+       /**
+ *  Vaikeuksia ei ole, jos laskutoimitukset sujuvat hyvin
+ * 
+ * @return true, jos kaikki laskutoimitukset sujuvat, muuten false
+ */
     
     public boolean eiVaikeuksia() {
         return (plusSujuu()&&miinusSujuu())&&(kertoSujuu()&&jakoSujuu());

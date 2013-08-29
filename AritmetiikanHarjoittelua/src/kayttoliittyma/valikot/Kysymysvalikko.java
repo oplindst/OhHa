@@ -62,7 +62,7 @@ public class Kysymysvalikko extends Valikko {
             JLabel kys = new JLabel(kysymys, JLabel.TRAILING);
             JTextField osoittaja = new JTextField(5);
             JButton tarkista = new JButton("Tarkista");
-            JLabel vastaus = new JLabel("                                        ");
+            JLabel vastaus = new JLabel("");
             Tarkistaja tarkistaja = new Tarkistaja(hallinta, kys, osoittaja, null, vastaus, ratkaisut.get(kysymys), tulokset);
             container.add(kys);
             container.add(osoittaja);
@@ -83,8 +83,8 @@ public class Kysymysvalikko extends Valikko {
         JButton tilastot = new JButton("Tilastot");
         TilastojenNayttaja tilasto = new TilastojenNayttaja(hallinta.getTilastot());
         tilastot.addActionListener(tilasto);
-        JButton tallenna = new JButton("Tallenna");
         JButton uudestaan = new JButton("Uudestaan");
+        JLabel tyhja9 = new JLabel("");
         JButton takaisin = new JButton("Takaisin");
         JButton jatka = new JButton("Jatka");
         ValikonVaihtaja jatko = new ValikonVaihtaja(frame, ValikkoTyyppi.JATKO, hallinta);
@@ -102,7 +102,7 @@ public class Kysymysvalikko extends Valikko {
             container.add(tyhja4);
             container.add(tyhja5);
         }
-        container.add(tallenna);
+        container.add(tyhja9);
         container.add(uudestaan);
         container.add(takaisin);
 
@@ -119,7 +119,7 @@ public class Kysymysvalikko extends Valikko {
         container.add(tilastot);
 
 
-        getFrame().setPreferredSize(new Dimension(600 + hallinta.lukujenKoko() / 1000, 100 + 33 * hallinta.getKysymystenMaara()));
+        getFrame().setPreferredSize(new Dimension(1000 + hallinta.lukujenKoko() / 1000, 100 + 33 * hallinta.getKysymystenMaara()));
 
         int leveys = 4;
         if (murtoluvut()) {

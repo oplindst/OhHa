@@ -26,7 +26,7 @@ public class ViestinNayttaja implements ActionListener{
     public ViestinNayttaja(String viesti) {
         this.viesti = viesti;
         frame = new JFrame("");
-        frame.setPreferredSize(new Dimension(7*viesti.length(), 100));
+        frame.setPreferredSize(new Dimension(1000, 100));
 
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         luoKomponentit(frame.getContentPane());
@@ -41,6 +41,10 @@ public class ViestinNayttaja implements ActionListener{
         container.add(label);
         SpringUtilities.asetaKomponentti(container, layout, label, 10, 10);
         
+    }
+    
+    public JFrame getFrame() {
+        return frame;
     }
     
     @Override
